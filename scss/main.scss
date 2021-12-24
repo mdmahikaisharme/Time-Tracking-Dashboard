@@ -1,0 +1,229 @@
+@import "./variable";
+@import "./reset";
+@import "./mixin";
+
+.hold {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.track {
+    --pad: 2rem;
+    --radius: 1rem;
+
+    min-height: 100vh;
+    padding: var(--pad) 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--veryDarkBlue);
+    color: #fff;
+
+    .hold {
+        display: grid;
+        grid-template: 1fr / 1fr 3fr;
+        grid-gap: var(--pad);
+    }
+
+    //
+    //
+    //
+    &Top {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--darkBlue);
+        border-radius: var(--radius);
+    }
+    &User {
+        height: 100%;
+        padding: var(--pad);
+        display: flex;
+        flex-direction: column;
+        background-color: var(--blue);
+        border-radius: var(--radius);
+
+        &Img {
+            width: 5rem;
+            height: 5rem;
+            border: 3px solid #fff;
+            border-radius: 5rem;
+        }
+        &Info {
+            margin-top: 2rem;
+
+            p {
+                opacity: 0.5;
+            }
+            h1 {
+                font-weight: 300;
+                font-size: 3rem;
+            }
+        }
+    }
+    &Menu {
+        padding: var(--pad);
+        display: flex;
+        flex-direction: column;
+    }
+    &Link {
+        margin-bottom: 1rem;
+        text-decoration: none;
+        display: block;
+        color: var(--desaturatedBlue);
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        &Active {
+            color: #fff;
+        }
+    }
+
+    //
+    //
+    //
+    &Bottom {
+        display: grid;
+        grid-template: repeat(2, 1fr) / repeat(3, 1fr);
+        grid-gap: var(--pad);
+    }
+    &Card {
+        padding-top: calc(var(--pad) * 1.25);
+        position: relative;
+        border-radius: var(--radius);
+        transition: all 0.2s ease;
+        overflow: hidden;
+
+        &:nth-child(1) {
+            background-color: var(--lightOrange);
+        }
+        &:nth-child(2) {
+            background-color: var(--softBlue);
+        }
+        &:nth-child(3) {
+            background-color: var(--lightRed);
+        }
+        &:nth-child(4) {
+            background-color: var(--limeGreen);
+        }
+        &:nth-child(5) {
+            background-color: var(--violet);
+        }
+        &:nth-child(6) {
+            background-color: var(--softOrange);
+        }
+
+        &BgImg {
+            width: calc(var(--pad) * 2);
+            position: absolute;
+            right: 1rem;
+            top: -0.5rem;
+        }
+        &Main {
+            padding: var(--pad);
+            background-color: var(--darkBlue);
+            border-radius: var(--radius);
+            transform: scaleZ(1);
+        }
+        &Head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            h3 {
+                font-size: 1.125rem;
+            }
+
+            button {
+                background: none;
+                outline: none;
+                border: none;
+            }
+        }
+        h1 {
+            margin-top: 1rem;
+            font-size: 3.5rem;
+            font-weight: 300;
+        }
+        p {
+            margin-top: 0.25em;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        &:hover {
+            .trackCardMain {
+                background-color: hsl(246, 40%, 35%);
+            }
+        }
+    }
+
+    //
+    //
+    //
+    @include medium() {
+        --pad: 1.5rem;
+
+        .hold {
+            max-width: 400px;
+            grid-template: repeat(2, auto) / 1fr;
+        }
+        &User {
+            flex-direction: row;
+            align-items: center;
+            height: 100%;
+
+            &Img {
+                width: 3.5rem;
+                height: 3.5rem;
+            }
+            &Info {
+                margin: 0;
+                margin-left: 1rem;
+
+                p {
+                    font-size: 0.9rem;
+                }
+                h1 {
+                    font-size: 1.3rem;
+                }
+            }
+        }
+        &Menu {
+            flex-direction: row;
+        }
+        &Link {
+            margin: 0 calc(var(--pad) * 0.5);
+        }
+
+        &Bottom {
+            display: grid;
+            grid-template: repeat(6, auto) / 1fr;
+            grid-gap: var(--pad);
+        }
+        &Card {
+            &Main {
+                padding: var(--pad);
+                background-color: var(--darkBlue);
+                border-radius: var(--radius);
+                transform: scaleZ(1);
+            }
+            &Head {
+                h3 {
+                    font-size: 1rem;
+                }
+            }
+            &Content {
+                margin-top: calc(var(--pad) * 0.5);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+            h1 {
+                margin: 0;
+                font-size: 2rem;
+            }
+        }
+    }
+}
